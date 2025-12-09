@@ -1,0 +1,77 @@
+.achievements-section-standalone {
+    padding: 4rem 2rem;
+    background: transparent;
+    min-height: 60vh;
+}
+
+.achievements-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.achievement-card-nothing {
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 2rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-card-nothing:hover {
+    border-color: rgba(0, 255, 136, 0.3);
+    transform: translateY(-4px);
+    background: rgba(30, 30, 30, 0.95);
+}
+
+.ach-number {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'Courier New', monospace;
+}
+
+.ach-title {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.ach-org {
+    font-size: 0.85rem;
+    color: rgba(0, 255, 136, 0.8);
+    font-weight: 600;
+}
+
+.ach-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .achievements-section-standalone {
+        padding: 3rem 1.5rem;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}

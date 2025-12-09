@@ -1,0 +1,75 @@
+.cursor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.cursor-comet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 24px;
+    /* Doubled from 12px */
+    height: 24px;
+    /* Doubled from 12px */
+    background-color: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    mix-blend-mode: difference;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+        0 0 30px rgba(255, 255, 255, 0.4);
+    transition: width 0.3s, height 0.3s;
+}
+
+.cursor-comet.hovering {
+    width: 48px;
+    /* Doubled from 24px */
+    height: 48px;
+    /* Doubled from 24px */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.binary-particle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 20px;
+    /* Doubled from 10px */
+    color: #00ffcc;
+    /* Matrix-ish or Tech-ish color? User said 'comet', maybe white is safer or light blue */
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    user-select: none;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    font-weight: bold;
+}
+
+/* Hide default cursor only if device has pointer */
+@media (pointer: fine) {
+    body {
+        cursor: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .cursor-container,
+    .cursor-comet {
+        display: none;
+    }
+
+    body {
+        cursor: auto;
+    }
+}

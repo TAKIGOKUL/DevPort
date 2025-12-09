@@ -1,0 +1,203 @@
+.experience-accordion {
+    border-top: none;
+    /* Remove list border */
+    margin-bottom: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* Space between cards */
+}
+
+.accordion-item {
+    border: 1px solid var(--border-color);
+    /* Full border */
+    border-radius: 16px;
+    /* Card shape */
+    padding: 0 2rem;
+    /* Inner spacing */
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.02);
+    /* Subtle glass background */
+    transition: all 0.4s ease;
+    /* Smoother transition */
+    position: relative;
+    overflow: hidden;
+    /* For golden border containment */
+}
+
+.accordion-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+    /* Slight lift */
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.accordion-item::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    /* Overlap bottom border */
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    /* Golden gradient */
+    transition: width 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.accordion-item.open::after {
+    width: 100%;
+    opacity: 1;
+}
+
+/* Optional: Slight golden glow on the text/icon when open */
+.accordion-item.open .acc-role,
+.accordion-item.open .acc-icon {
+    color: #f0f0f0;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.accordion-item:hover {
+    background: var(--bg-secondary);
+}
+
+.accordion-header {
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* responsive */
+    gap: 1rem;
+}
+
+.acc-role {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0;
+    color: var(--text-main);
+    flex: 1;
+    min-width: 250px;
+}
+
+.acc-company {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-right: 2rem;
+}
+
+.acc-icon {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-main);
+    width: 2rem;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.accordion-item.open .acc-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Custom easeOut Expo-ish */
+}
+
+.accordion-item.open .accordion-content {
+    grid-template-rows: 1fr;
+    /* Removed max-height */
+}
+
+.acc-inner {
+    overflow: hidden;
+    padding-bottom: 2rem;
+    /* Keep existing padding rule, just ensure overflow hidden is here */
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+    /* Delay content fade in */
+}
+
+.accordion-item.open .acc-inner {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.acc-date {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-family: monospace;
+}
+
+.acc-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Achievements Section */
+.achievements-section {
+    margin-top: 4rem;
+}
+
+.subsection-title {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    border-left: 2px solid var(--text-main);
+    padding-left: 1rem;
+    text-transform: uppercase;
+}
+
+/* Achievements Grid */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+}
+
+.achievement-card {
+    text-decoration: none;
+    background: transparent;
+    padding: 2rem;
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    transition: background 0.3s;
+    display: block;
+    /* Ensure anchor takes block space */
+}
+
+.achievement-card:hover {
+    background: var(--bg-secondary);
+}
+
+.ach-title {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.ach-org {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.ach-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
