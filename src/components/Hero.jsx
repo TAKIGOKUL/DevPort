@@ -52,7 +52,7 @@ const Hero = () => {
                     </p>
 
                     <div className="hero-cta">
-                        <a href="/src/assets/GOKUL_GK_SDE.pdf" target="_blank" rel="noreferrer" className="btn-primary">
+                        <a href="https://drive.google.com/file/d/1HmLMatWxnhFK9GsDP_8EWzeLAM7MtVLR/view?usp=sharing" target="_blank" rel="noreferrer" className="btn-primary">
                             <span>Resume</span>
                             <svg className="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
                                 <path d="M12 3V16M12 16L7 11M12 16L17 11M3 21H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
