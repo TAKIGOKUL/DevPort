@@ -92,10 +92,6 @@ const Hero = () => {
                         alt={personalDetails.name}
                         className="hero-profile-image"
                     />
-                    <div className="image-badge">
-                        <span className="badge-dot"></span>
-                        <span className="badge-text">Available for Work</span>
-                    </div>
                 </div>
             </div>
 
