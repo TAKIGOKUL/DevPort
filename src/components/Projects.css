@@ -1,20 +1,21 @@
+/* Projects Section - Enhanced Mobile Responsiveness */
 .section-container {
-    padding: 8rem 2rem;
+    padding: 6rem 2rem;
     max-width: 1600px;
     margin: 0 auto;
 }
 
 .section-title {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
     text-align: left;
     color: var(--text-main);
     background: none;
     -webkit-text-fill-color: initial;
     text-transform: uppercase;
     letter-spacing: -0.02em;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -22,46 +23,30 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 0;
-    /* Lento often uses collapsed borders */
     border-top: 1px solid var(--border-color);
-}
-
-@media (min-width: 768px) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1400px) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 large cards feels more premium than 4 small ones */
-    }
 }
 
 .project-card {
     text-decoration: none;
-    /* Reset link style */
     background: transparent;
     border-bottom: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color);
-    /* Grid lines */
+    border-right: none;
     padding: 0;
-    /* Remove padding to let image bleed if needed, but we'll add it to content */
     position: relative;
     transition: background 0.4s ease;
-    min-height: 500px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
 }
 
 .project-card:hover {
     background: var(--bg-secondary);
+    border-color: rgba(0, 255, 136, 0.2);
 }
 
 .card-image-container {
     width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/10;
     overflow: hidden;
     border-bottom: 1px solid var(--border-color);
 }
@@ -80,7 +65,7 @@
 }
 
 .card-content {
-    padding: 2rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -89,18 +74,18 @@
 }
 
 .card-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .project-year {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     display: block;
 }
 
 .project-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 500;
     margin: 0;
     color: var(--text-main);
@@ -108,32 +93,131 @@
 }
 
 .project-desc {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-secondary);
-    max-width: 80%;
+    max-width: 100%;
+    line-height: 1.6;
 }
 
 .project-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .tag {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem;
     border: 1px solid var(--border-color);
     color: var(--text-main);
     border-radius: 50px;
     background: transparent;
 }
 
-.card-content {
-    z-index: 2;
-}
-
 /* Remove old glow */
 .card-glow {
     display: none;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-card {
+        border-right: 1px solid var(--border-color);
+        min-height: 500px;
+    }
+
+    /* Remove right border from last item in each row */
+    .project-card:nth-child(2n) {
+        border-right: none;
+    }
+
+    .card-content {
+        padding: 2rem;
+    }
+
+    .project-desc {
+        max-width: 80%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-container {
+        padding: 8rem 2rem;
+    }
+
+    .section-title {
+        margin-bottom: 6rem;
+        padding-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-container {
+        padding: 4rem 1.25rem;
+    }
+
+    .section-title {
+        margin-bottom: 2.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .project-card {
+        min-height: auto;
+    }
+
+    .card-image-container {
+        aspect-ratio: 16/9;
+    }
+
+    .card-content {
+        padding: 1.25rem;
+    }
+
+    .card-header {
+        margin-bottom: 1rem;
+    }
+
+    .project-desc {
+        font-size: 0.9rem;
+    }
+
+    .project-tags {
+        margin-top: 1rem;
+    }
+
+    .tag {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-container {
+        padding: 3rem 1rem;
+    }
+
+    .section-title {
+        margin-bottom: 2rem;
+    }
+
+    .card-content {
+        padding: 1rem;
+    }
+
+    .project-year {
+        font-size: 0.75rem;
+    }
+
+    .project-title {
+        font-size: 1.25rem;
+    }
+
+    .project-desc {
+        font-size: 0.85rem;
+    }
 }

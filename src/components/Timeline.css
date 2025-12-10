@@ -1,47 +1,38 @@
+/* Experience Timeline - Enhanced Mobile Responsiveness */
 .experience-accordion {
     border-top: none;
-    /* Remove list border */
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    /* Space between cards */
+    gap: 1.25rem;
 }
 
 .accordion-item {
     border: 1px solid var(--border-color);
-    /* Full border */
     border-radius: 16px;
-    /* Card shape */
     padding: 0 2rem;
-    /* Inner spacing */
     cursor: pointer;
     background: rgba(255, 255, 255, 0.02);
-    /* Subtle glass background */
     transition: all 0.4s ease;
-    /* Smoother transition */
     position: relative;
     overflow: hidden;
-    /* For golden border containment */
 }
 
 .accordion-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(30, 30, 30, 0.95);
     transform: translateY(-2px);
-    /* Slight lift */
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 255, 136, 0.3);
 }
 
 .accordion-item::after {
     content: '';
     position: absolute;
     bottom: -1px;
-    /* Overlap bottom border */
     left: 0;
     width: 0%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #ffd700, transparent);
-    /* Golden gradient */
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.8), transparent);
     transition: width 0.5s ease-in-out;
     opacity: 0;
 }
@@ -51,49 +42,47 @@
     opacity: 1;
 }
 
-/* Optional: Slight golden glow on the text/icon when open */
 .accordion-item.open .acc-role,
 .accordion-item.open .acc-icon {
     color: #f0f0f0;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
 }
 
-.accordion-item:hover {
-    background: var(--bg-secondary);
-}
+/* Removed duplicate hover rule */
 
 .accordion-header {
-    padding: 2rem 0;
+    padding: 1.75rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    /* responsive */
     gap: 1rem;
 }
 
 .acc-role {
-    font-size: 2rem;
+    font-size: clamp(1.25rem, 3vw, 2rem);
     font-weight: 500;
     margin: 0;
     color: var(--text-main);
     flex: 1;
-    min-width: 250px;
+    min-width: 200px;
 }
 
 .acc-company {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    margin-right: 2rem;
+    font-size: clamp(0.9rem, 2vw, 1.25rem);
+    color: rgba(0, 255, 136, 0.85);
+    margin-right: 1.5rem;
+    font-weight: 500;
 }
 
 .acc-icon {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 300;
     color: var(--text-main);
     width: 2rem;
     text-align: center;
     transition: transform 0.3s;
+    flex-shrink: 0;
 }
 
 .accordion-item.open .acc-icon {
@@ -104,23 +93,19 @@
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    /* Custom easeOut Expo-ish */
 }
 
 .accordion-item.open .accordion-content {
     grid-template-rows: 1fr;
-    /* Removed max-height */
 }
 
 .acc-inner {
     overflow: hidden;
-    padding-bottom: 2rem;
-    /* Keep existing padding rule, just ensure overflow hidden is here */
+    padding-bottom: 1.75rem;
     max-width: 800px;
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
-    /* Delay content fade in */
 }
 
 .accordion-item.open .acc-inner {
@@ -130,16 +115,16 @@
 
 .acc-date {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
     margin-bottom: 1rem;
     font-family: monospace;
 }
 
 .acc-desc {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 /* Achievements Section */
@@ -148,7 +133,7 @@
 }
 
 .subsection-title {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     color: var(--text-main);
     margin-bottom: 2rem;
     border-left: 2px solid var(--text-main);
@@ -168,13 +153,12 @@
 .achievement-card {
     text-decoration: none;
     background: transparent;
-    padding: 2rem;
+    padding: 1.75rem;
     border-right: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
     border-radius: 0;
     transition: background 0.3s;
     display: block;
-    /* Ensure anchor takes block space */
 }
 
 .achievement-card:hover {
@@ -182,22 +166,141 @@
 }
 
 .ach-title {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: var(--text-main);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     font-weight: 500;
 }
 
 .ach-org {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 1px;
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .ach-desc {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .experience-accordion {
+        margin-bottom: 3rem;
+    }
+
+    .accordion-item {
+        padding: 0 1.5rem;
+    }
+
+    .acc-company {
+        margin-right: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .experience-accordion {
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .accordion-item {
+        padding: 0 1.25rem;
+        border-radius: 12px;
+    }
+
+    .accordion-header {
+        padding: 1.25rem 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .acc-role {
+        min-width: 100%;
+        font-size: 1.15rem;
+    }
+
+    .acc-company {
+        margin-right: 0;
+        font-size: 0.9rem;
+    }
+
+    .acc-icon {
+        position: absolute;
+        right: 1.25rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+    }
+
+    .accordion-item.open .acc-icon {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    .acc-inner {
+        padding-bottom: 1.25rem;
+    }
+
+    .acc-desc {
+        font-size: 0.9rem;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+        border-left: none;
+    }
+
+    .achievement-card {
+        padding: 1.5rem 1.25rem;
+        border-left: 1px solid var(--border-color);
+    }
+}
+
+@media (max-width: 480px) {
+    .accordion-item {
+        padding: 0 1rem;
+    }
+
+    .accordion-header {
+        padding: 1rem 0;
+        padding-right: 2rem;
+    }
+
+    .acc-role {
+        font-size: 1rem;
+    }
+
+    .acc-company {
+        font-size: 0.8rem;
+    }
+
+    .acc-icon {
+        right: 1rem;
+        font-size: 1.25rem;
+    }
+
+    .acc-date {
+        font-size: 0.75rem;
+    }
+
+    .acc-desc {
+        font-size: 0.85rem;
+    }
+
+    .achievement-card {
+        padding: 1.25rem 1rem;
+    }
+
+    .ach-title {
+        font-size: 1rem;
+    }
+
+    .ach-desc {
+        font-size: 0.85rem;
+    }
 }

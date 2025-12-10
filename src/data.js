@@ -4,7 +4,7 @@ export const personalDetails = {
     email: "gokul23gopakumar@gmail.com",
     phone: "(+91) 8129-7250-07",
     location: "Kerala, India",
-    profileImg: "https://cdn-icons-png.flaticon.com/512/8873/8873476.png",
+    profileImg: "/src/assets/profile.png",
     socials: {
         github: "https://github.com/TAKIGOKUL", // Inferred URL structure
         linkedin: "https://linkedin.com/in/gokul0gk", // Inferred URL structure

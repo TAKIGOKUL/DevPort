@@ -1,7 +1,8 @@
+/* Achievements Section - Enhanced Mobile Responsiveness */
 .achievements-section-standalone {
     padding: 4rem 2rem;
     background: transparent;
-    min-height: 60vh;
+    min-height: auto;
 }
 
 .achievements-container {
@@ -11,20 +12,20 @@
 
 .achievements-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
 }
 
 .achievement-card-nothing {
     background: rgba(20, 20, 20, 0.8);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 2rem;
+    border-radius: 20px;
+    padding: 1.75rem;
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.6rem;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -38,40 +39,91 @@
 
 .ach-number {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-size: 0.7rem;
+    top: 1.25rem;
+    right: 1.25rem;
+    font-size: 0.65rem;
     color: rgba(255, 255, 255, 0.3);
     font-family: 'Courier New', monospace;
 }
 
 .ach-title {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     color: #fff;
     margin: 0;
     font-weight: 700;
     line-height: 1.3;
+    padding-right: 2rem;
 }
 
 .ach-org {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: rgba(0, 255, 136, 0.8);
     font-weight: 600;
 }
 
 .ach-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.6);
     line-height: 1.5;
     margin: 0;
 }
 
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .achievements-section-standalone {
+        padding: 3.5rem 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .achievements-section-standalone {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1.25rem;
     }
 
     .achievements-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .achievement-card-nothing {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+
+    .ach-number {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .ach-title {
+        font-size: 1.05rem;
+    }
+
+    .ach-org {
+        font-size: 0.75rem;
+    }
+
+    .ach-desc {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .achievements-section-standalone {
+        padding: 2.5rem 1rem;
+    }
+
+    .achievement-card-nothing {
+        padding: 1.25rem;
+        border-radius: 14px;
+        gap: 0.5rem;
+    }
+
+    .ach-title {
+        font-size: 1rem;
+    }
+
+    .ach-number {
+        font-size: 0.6rem;
     }
 }

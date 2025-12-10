@@ -2,155 +2,171 @@ import React, { useEffect, useState } from 'react';
 import { personalDetails } from '../data';
 import './Hero.css';
 
-// GitHub Heatmap Component
-const GitHubHeatmap = ({ username }) => {
-    const [activity, setActivity] = useState([]);
-    const [loading, setLoading] = useState(true);
+const Hero = () => {
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const loadGitHubData = async () => {
-            try {
-                const { fetchGitHubContributions, colorToLevel } = await import('../utils/githubApi');
-                const weeks = await fetchGitHubContributions();
+        setIsVisible(true);
 
-                if (weeks) {
-                    const formattedActivity = weeks.slice(-16).map(week =>
-                        week.contributionDays.map(day => colorToLevel(day.color))
-                    );
-                    setActivity(formattedActivity);
-                } else {
-                    // Fallback data
-                    const fallbackActivity = [];
-                    for (let week = 0; week < 16; week++) {
-                        const weekData = [];
-                        for (let day = 0; day < 7; day++) {
-                            weekData.push(Math.floor(Math.random() * 5));
-                        }
-                        fallbackActivity.push(weekData);
-                    }
-                    setActivity(fallbackActivity);
-                }
-            } catch (error) {
-                console.error('Error loading GitHub data:', error);
-            }
-            setLoading(false);
+        const handleMouseMove = (e) => {
+            setMousePosition({ x: e.clientX, y: e.clientY });
         };
 
-        loadGitHubData();
-    }, [username]);
-
-    if (loading) {
-        return (
-            <div className="github-heatmap">
-                <div className="loading-text">Loading...</div>
-            </div>
-        );
-    }
-
-    return (
-        <div className="github-heatmap">
-            {activity.map((week, weekIdx) => (
-                <div key={weekIdx} className="heatmap-week">
-                    {week.map((level, dayIdx) => (
-                        <div
-                            key={dayIdx}
-                            className={`heatmap-day level-${level}`}
-                        ></div>
-                    ))}
-                </div>
-            ))}
-        </div>
-    );
-};
-
-const Hero = () => {
-    const [time, setTime] = useState(new Date());
-
-    useEffect(() => {
-        const timer = setInterval(() => setTime(new Date()), 1000);
-        return () => clearInterval(timer);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
     return (
-        <section id="hero" className="nothing-hero-grid-v2">
+        <section id="hero" className="hero-section">
+            {/* Animated background glow */}
+            <div
+                className="hero-glow"
+                style={{
+                    left: `${mousePosition.x}px`,
+                    top: `${mousePosition.y}px`,
+                }}
+            ></div>
 
-            {/* div1: Profile Image (2x3, starts col 2, row 2) */}
-            <div className="nothing-widget div1 profile-widget">
-                <img
-                    src={personalDetails.profileImg}
-                    alt={personalDetails.name}
-                    className="hero-profile-img"
-                />
-                <div className="widget-overlay">
-                    <div className="profile-badge">
+            {/* Decorative elements */}
+            <div className="hero-decoration decoration-1"></div>
+            <div className="hero-decoration decoration-2"></div>
+
+            <div className="hero-container">
+                {/* Main content - Left side */}
+                <div className={`hero-content ${isVisible ? 'visible' : ''}`}>
+                    <div className="hero-greeting">
+                        <span className="greeting-text">Hi There,</span>
+                    </div>
+
+                    <h1 className="hero-title">
+                        I am <span className="hero-name">{personalDetails.name.split(' ')[0]}</span>
+                    </h1>
+
+                    <h2 className="hero-role">
+                        <span className="role-icon">⚡</span>
+                        {personalDetails.role}
+                    </h2>
+
+                    <p className="hero-description">
+                        {personalDetails.tagline || "Passionate about building innovative solutions with cutting-edge technologies. Transforming ideas into reality through code and creativity."}
+                    </p>
+
+                    <div className="hero-cta">
+                        <a href="#projects" className="btn-primary">
+                            <span>View My Work</span>
+                            <svg className="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </a>
+                        <a href="#contact" className="btn-secondary">
+                            <span>Get In Touch</span>
+                        </a>
+                    </div>
+
+                    {/* Stats */}
+                    <div className="hero-stats">
+                        <div className="stat-item">
+                            <div className="stat-number">2+</div>
+                            <div className="stat-label">Years Experience</div>
+                        </div>
+                        <div className="stat-divider"></div>
+                        <div className="stat-item">
+                            <div className="stat-number">50+</div>
+                            <div className="stat-label">Projects Done</div>
+                        </div>
+                        <div className="stat-divider"></div>
+                        <div className="stat-item">
+                            <div className="stat-number">100%</div>
+                            <div className="stat-label">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right side - Profile Image */}
+                <div className={`hero-image-wrapper ${isVisible ? 'visible' : ''}`}>
+                    <div className="image-background">
+                        <div className="image-glow"></div>
+                    </div>
+                    <img
+                        src={personalDetails.profileImg}
+                        alt={personalDetails.name}
+                        className="hero-profile-image"
+                    />
+                    <div className="image-badge">
                         <span className="badge-dot"></span>
-                        OPEN TO WORK
+                        <span className="badge-text">Available for Work</span>
                     </div>
                 </div>
             </div>
 
-            {/* div2: Name (2x1, starts col 4, row 2) */}
-            <div className="nothing-widget div2 name-widget">
-                <div className="widget-label">HELLO, I'M</div>
-                <h1 className="hero-name">GOKUL</h1>
+            {/* Social Links - Vertical side bar */}
+            <div className="hero-socials-vertical">
+                <a
+                    href="https://api.whatsapp.com/send?phone=918129725007&text="
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-link-v"
+                    aria-label="WhatsApp"
+                >
+                    <i className="ri-whatsapp-line"></i>
+                </a>
+                <a
+                    href="https://www.instagram.com/ad.astra.___/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-link-v"
+                    aria-label="Instagram"
+                >
+                    <i className="ri-instagram-line"></i>
+                </a>
+                <a
+                    href="https://github.com/TAKIGOKUL"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-link-v"
+                    aria-label="GitHub"
+                >
+                    <i className="ri-github-line"></i>
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/gokul-gk-b0b718261/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-link-v"
+                    aria-label="LinkedIn"
+                >
+                    <i className="ri-linkedin-line"></i>
+                </a>
+                <a
+                    href="https://t.me/alchemist_taki"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-link-v"
+                    aria-label="Telegram"
+                >
+                    <i className="ri-telegram-line"></i>
+                </a>
+                <a
+                    href="mailto:gokul23gopakumar@gmail.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-link-v"
+                    aria-label="Email"
+                >
+                    <i className="ri-mail-line"></i>
+                </a>
+                <a
+                    href="tel:8129725007"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-link-v"
+                    aria-label="Phone"
+                >
+                    <i className="ri-phone-line"></i>
+                </a>
+                <div className="social-line"></div>
             </div>
-
-            {/* div3: Role (1x1, starts col 6, row 2) */}
-            <div className="nothing-widget div3 role-widget">
-                <div className="widget-icon">⚡</div>
-                <div className="role-text">AI ENGINEER</div>
-            </div>
-
-            {/* div4: Location (1x1, starts col 4, row 3) */}
-            <div className="nothing-widget div4 location-widget">
-                <div className="loc-icon">📍</div>
-                <div className="loc-text">INDIA</div>
-            </div>
-
-            {/* div5: GitHub Heatmap (2x1, starts col 5, row 3) */}
-            <div className="nothing-widget div5 heatmap-widget">
-                <div className="widget-header-mini">
-                    <span>GITHUB</span>
-                    <span className="github-id">@TAKIGOKUL</span>
-                </div>
-                <GitHubHeatmap username="TAKIGOKUL" />
-            </div>
-
-            {/* div6: Status/Time (2x2, starts col 4, row 4) */}
-            <div className="nothing-widget div6 status-widget">
-                <div className="time-display-large">
-                    {time.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })}
-                </div>
-                <div className="date-display-large">
-                    {time.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }).toUpperCase()}
-                </div>
-                <div className="status-message">
-                    <span className="status-icon">🚀</span>
-                    <span>Building the Future</span>
-                </div>
-            </div>
-
-            {/* div7: Socials (2x1, starts col 2, row 5) */}
-            <div className="nothing-widget div7 socials-widget">
-                <a href={personalDetails.socials?.linkedin} target="_blank" rel="noreferrer" className="social-btn">IN</a>
-                <a href={personalDetails.socials?.github} target="_blank" rel="noreferrer" className="social-btn">GH</a>
-                <a href={`mailto:${personalDetails.email}`} className="social-btn">@</a>
-            </div>
-
-            {/* div8: Gallery/Projects (1x2, starts col 6, row 4) */}
-            <div className="nothing-widget div8 gallery-widget">
-                <div className="dot-matrix-v">
-                    {Array(6).fill(0).map((_, i) => (
-                        <div key={i} className="matrix-row">
-                            {Array(4).fill(0).map((_, j) => (
-                                <span key={j} className="matrix-dot" style={{ animationDelay: `${(i + j) * 100}ms` }}></span>
-                            ))}
-                        </div>
-                    ))}
-                </div>
-                <div className="gallery-label">PROJECTS</div>
-            </div>
-
         </section>
     );
 };
