@@ -44,7 +44,6 @@ const Hero = () => {
                     </h1>
 
                     <h2 className="hero-role">
-                        <span className="role-icon">⚡</span>
                         {personalDetails.role}
                     </h2>
 
@@ -53,10 +52,10 @@ const Hero = () => {
                     </p>
 
                     <div className="hero-cta">
-                        <a href="#projects" className="btn-primary">
-                            <span>View My Work</span>
-                            <svg className="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <a href="/src/assets/GOKUL_GK_SDE.pdf" target="_blank" rel="noreferrer" className="btn-primary">
+                            <span>Resume</span>
+                            <svg className="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 3V16M12 16L7 11M12 16L17 11M3 21H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </a>
                         <a href="#contact" className="btn-secondary">
