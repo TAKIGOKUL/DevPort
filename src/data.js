@@ -1,125 +1,104 @@
 export const personalDetails = {
-    name: "Gokul GK",
-    title: "SDE & AI Engineer",
-    email: "gokul23gopakumar@gmail.com",
-    phone: "(+91) 8129-7250-07",
-    location: "Kerala, India",
+    name: "Gokul G K",
+    title: "AI Engineer & Full-Stack SDE",
+    email: "gokulgk25007@gmail.com",
+    phone: "+91 8129-7250-07",
+    location: "Kollam, Kerala, India",
     profileImg: "/profile.jpg",
     socials: {
-        github: "https://github.com/TAKIGOKUL", // Inferred URL structure
-        linkedin: "https://linkedin.com/in/gokul0gk", // Inferred URL structure
+        github: "https://github.com/TAKIGOKUL",
+        linkedin: "https://linkedin.com/in/gokul0gk",
     },
-    about: "I am a Full Stack Developer and AI Engineer with a passion for building scalable, intelligent systems. With a deep foundation in both software engineering and artificial intelligence, I bridge the gap between complex algorithms and intuitive user experiences. My work spans across humanitarian tech, blockchain, and agentic AI systems."
+    about: "Final-year CS Engineer. Builds agentic AI systems, full-stack web apps, and cross-platform mobile products. Applies LLMs and prompt engineering to ship production-ready systems. Served as Google Student Ambassador. Chairs an IEEE Student Branch chapter of 150+ engineers."
 };
 
 export const experiences = [
     {
         role: "Google Student Ambassador",
-        company: "Google",
-        date: "Sept 2025 – Present",
-        desc: "Officially promoting innovative tools from Google LLC to students and uplifting their development capabilities with an AI edge."
+        company: "Google Gemini",
+        date: "Sept. 2025 – Present",
+        desc: "Presented 4+ GenAI workshops to 100+ students on Gemini API, n8n, and LLM integration. Increased campus AI project submissions by 30%. Trained 3 student teams to build and deploy Gemini-powered apps."
     },
     {
-        role: "Webmaster",
-        company: "IEEE PES Kerala Chapter",
-        date: "Mar 2024 – Present",
-        desc: "Orchestrating the web presence for the IEEE Power & Energy Society Kerala Chapter. Developed the official website for fan flagship AKPESSC event."
+        role: "Webmaster & Chairperson",
+        company: "IEEE PES Kerala Chapter / IEEE PES SBC CE Adoor",
+        date: "Feb. 2025 – Present",
+        desc: "Grew chapter membership by 110% to 80+ active members. Directed the AKPESSC 3-day flagship conference in 2024 and 2025. Migrated WordPress site to Next.js with Cloudflare CDN, maintaining 99%+ uptime."
     },
     {
-        role: "Chairperson",
-        company: "IEEE PES Student Branch Chapter, CEA",
-        date: "Feb 2025 – Present",
-        desc: "Leading a student branch of 50+ members, promoting awareness in power and energy, and contributing to sustainable development goals."
-    },
-    {
-        role: "Community Lead",
-        company: "IEDC TBI CEA",
-        date: "Mar 2024 – Feb 2025",
-        desc: "Promoted entrepreneurship among students by providing mentorship and resources for developing innovative business ideas."
+        role: "Freelance Software Developer",
+        company: "Valaxia",
+        date: "2023 – Present",
+        desc: "Shipped 8+ production apps in React.js, Node.js, Flutter, and Firebase. Conducted development bootcamps for students to build Gemini-powered apps. Cut average page load to under 2 seconds by tuning database schemas."
     }
 ];
 
 export const projects = [
     {
         title: "Adwantage AI",
-        tech: ["Agentic AI", "Digital Marketing", "N8N"],
-        desc: "A platform for low-cost, high-quality advertisement content creation using AI Agents for SMEs.",
+        tech: ["Python", "CrewAI", "n8n", "GPT-4", "Gemini API"],
+        desc: "Built a multi-agent AI system using CrewAI and n8n to automate ad campaign creation and scheduling. Cut setup time by 40% across 500+ ad copies.",
         year: "2024",
         img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
         link: "https://github.com/TAKIGOKUL/Adwantage-AI"
     },
     {
-        title: "Blockchain Carbon Trading",
-        tech: ["Blockchain", "Web3", "Solidity"],
-        desc: "Decentralized marketplace concept for carbon credit trading, developed as part of a formal research internship.",
-        year: "2025",
-        img: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800",
-        link: "https://github.com/TAKIGOKUL/Carbon-Trading-Marketplace"
-    },
-    {
         title: "GranthaNethra",
-        tech: ["NLP", "OCR", "Fullstack"],
-        desc: "An open-source corpus creation tool for Indic language datasets to aid public research and development.",
+        tech: ["Python", "Tesseract", "OpenCV", "NLP", "React.js"],
+        desc: "Built a full-stack corpus digitisation platform for low-resource Indic languages with a custom OCR pipeline and a Figma-crafted React.js annotation UI.",
         year: "2024",
         img: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800",
         link: "https://github.com/TAKIGOKUL/GranthaNethra"
     },
     {
         title: "Nexus",
-        tech: ["Flutter", "Firebase"],
-        desc: "Cross-platform anti-drug community app empowering users to report hotspots and assist authorities.",
+        tech: ["Flutter", "Firebase", "Firestore", "Google Maps API"],
+        desc: "Shipped a cross-platform Flutter app with real-time Firestore sync, JWT-based Firebase Auth, and a WCAG-compliant UI for anonymous geotagged incident reporting.",
         year: "2024",
         img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800",
         link: "https://github.com/TAKIGOKUL/Nexus-Anti-Drug-App"
     },
     {
-        title: "Project Swaram",
-        tech: ["Humanitarian Tech", "IoT"],
-        desc: "Secured $5,958 IEEE HTB grant to provide clean water to a remote tribal village using solar-powered pumps.",
-        year: "2024",
-        img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
-        link: "https://github.com/TAKIGOKUL/Project-Swaram"
-    },
-    {
-        title: "AKPESSC Website",
-        tech: ["Web Development", "Event Mgmt"],
-        desc: "Official platform for the All Kerala Power And Energy Student Congress, handling registrations and event details.",
-        year: "2024",
+        title: "AKPESSC Portal",
+        tech: ["React.js", "Node.js", "Express.js", "MongoDB", "REST API"],
+        desc: "Launched a full-stack event portal managing 300+ participants with a real-time admin dashboard, auth middleware, and automated email workflows.",
+        year: "2025",
         img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800",
         link: "https://github.com/TAKIGOKUL"
     }
 ];
 
 export const skills = {
-    "Languages": ["Python", "JavaScript", "Dart", "Solidity", "SQL"],
-    "Frameworks": ["React", "FastAPI", "Flutter", "Next.js", "TailwindCSS"],
-    "Tools": ["Docker", "Git", "Figma", "Postman", "N8N"],
-    "AI/ML": ["LangChain", "OpenAI API", "Hugging Face", "TensorFlow", "RAG"]
+    "Languages": ["Python", "JavaScript", "C++", "C", "Dart", "SQL", "HTML/CSS"],
+    "Frontend & Mobile": ["React.js", "Flutter", "Tailwind CSS"],
+    "Backend & DB": ["Node.js", "Express.js", "MongoDB", "Firebase", "PostgreSQL"],
+    "AI & ML": ["Gemini", "GPT-4", "CrewAI", "LangChain", "NLP", "OpenCV", "n8n"],
+    "Tools & DevOps": ["Git", "Docker", "Figma", "Vercel", "Firebase Hosting", "CI/CD", "Linux"]
 };
 
 export const achievements = [
     {
-        title: "Google Student Ambassador",
-        org: "GSA Program",
-        desc: "Selected as one of the few Student Ambassadors, promoting Google technologies and organizing workshops on campus.",
-        link: "https://www.linkedin.com/in/gokul0gk/"
+        title: "Machine Learning with Python",
+        org: "IBM / Coursera",
+        desc: "Completed certification in Machine Learning using Python.",
+        link: "#"
     },
     {
-        title: "K-DISC YIP 5.0 Winner",
-        org: "Kerala Govt.",
-        desc: "Winner of the Young Innovators Programme (YIP) 5.0 for the project 'Swaram', securing funding and mentorship.",
-        link: "https://yip.kerala.gov.in/"
+        title: "1st Place – Luxathon 2024",
+        org: "College of Engineering Karunagapally",
+        desc: "Secured first place in the Luxathon 2024 hackathon.",
+        link: "#"
     },
     {
-        title: "IEEE HTB Grantee",
-        org: "IEEE",
-        desc: "Recipient of the IEEE Humanitarian Activities Committee (HAC) / HTB grant for implementing sustainable water solutions.",
-        link: "https://humanitarian.ieee.org/"
+        title: "Introduction to Software Engineering",
+        org: "IBM / Coursera",
+        desc: "Completed certification in Software Engineering fundamentals.",
+        link: "#"
     },
     {
-        title: "NPTEL Discipline Star",
-        org: "IIT Madras",
-        desc: "Awarded 'Discipline Star' for completing 5+ NPTEL courses with Elite+Gold and Elite+Silver certifications.",
-        link: "https://nptel.ac.in/"
+        title: "Accelerate Your Job Search with AI",
+        org: "Google / Coursera",
+        desc: "Earned certification from Google on leveraging AI for career growth.",
+        link: "#"
     }
 ];
