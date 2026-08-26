@@ -25,39 +25,41 @@ const Hero = () => {
             </div>
 
             <div className={`hero-inner ${isVisible ? 'visible' : ''}`}>
+                <div className="hero-meta-row">
+                    <span>{personalDetails.location.replace(', India', '')} — IN</span>
+                    <span className="hero-meta-line"></span>
+                    <span>B.Tech CSE &apos;26</span>
+                </div>
+
                 <div className="hero-panels">
                     <div className="hero-panel hero-panel-text">
-                        <div className="hero-meta-row">
-                            <span>{personalDetails.location.replace(', India', '')} — IN</span>
-                            <span className="hero-meta-line"></span>
-                            <span>B.Tech CSE &apos;26</span>
-                        </div>
+                        <div className="hero-text-center">
+                            <h1 className="hero-name">
+                                <span>Gokul</span>
+                                <span>G K<em>.</em></span>
+                            </h1>
 
-                        <h1 className="hero-name">
-                            <span>Gokul</span>
-                            <span>G K<em>.</em></span>
-                        </h1>
+                            <div className="hero-role-row">
+                                <span className="hero-role-text">{ROLES[roleIndex]}</span>
+                                <span className="hero-role-cursor" aria-hidden="true"></span>
+                            </div>
 
-                        <div className="hero-role-row">
-                            <span className="hero-role-text">{ROLES[roleIndex]}</span>
-                            <span className="hero-role-cursor" aria-hidden="true"></span>
-                        </div>
+                            <p className="hero-desc">
+                                Final-year CS engineer building agentic AI systems, full-stack web apps
+                                and cross-platform mobile products. I ship: eight production apps, four
+                                AI systems, two hackathon wins.
+                            </p>
 
-                        <p className="hero-desc">
-                            Final-year CS engineer building agentic AI systems, full-stack web apps
-                            and cross-platform mobile products. I ship: eight production apps, four
-                            AI systems, two hackathon wins.
-                        </p>
+                            <div className="hero-cta-row">
+                                <a href="#projects" className="hbtn hbtn-primary hoverable">See the work</a>
+                                <a href="https://github.com/TAKIGOKUL" target="_blank" rel="noreferrer" className="hbtn hbtn-secondary hoverable">GitHub</a>
+                                <a href="https://drive.google.com/file/d/1HmLMatWxnhFK9GsDP_8EWzeLAM7MtVLR/view?usp=sharing" target="_blank" rel="noreferrer" className="hbtn hbtn-secondary hoverable">Résumé (PDF)</a>
+                            </div>
 
-                        <div className="hero-cta-row">
-                            <a href="#projects" className="hbtn hbtn-primary hoverable">See the work</a>
-                            <a href="https://github.com/TAKIGOKUL" target="_blank" rel="noreferrer" className="hbtn hbtn-secondary hoverable">GitHub</a>
-                            <a href="https://drive.google.com/file/d/1HmLMatWxnhFK9GsDP_8EWzeLAM7MtVLR/view?usp=sharing" target="_blank" rel="noreferrer" className="hbtn hbtn-secondary hoverable">Résumé (PDF)</a>
-                        </div>
-
-                        <div className="hero-availability">
-                            <span className="hero-availability-dot" aria-hidden="true"></span>
-                            Open to full-time roles — graduating May 2026
+                            <div className="hero-availability">
+                                <span className="hero-availability-dot" aria-hidden="true"></span>
+                                Open to full-time roles — graduated May 2026
+                            </div>
                         </div>
                     </div>
 

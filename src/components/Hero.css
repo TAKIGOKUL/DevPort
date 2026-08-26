@@ -81,9 +81,18 @@
     min-height: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     background: var(--bg-color);
     padding: clamp(1.25rem, 1.6vw + 1.6vh, 2.75rem) clamp(1.5rem, 3vw, 3.25rem);
+}
+
+/* Centered content group sits in whatever space remains below the
+   top-pinned meta row, rather than the meta row centering with it */
+.hero-text-center {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero-meta-row {
@@ -96,6 +105,7 @@
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.55);
     flex-shrink: 0;
+    margin-bottom: clamp(0.75rem, 0.6vw + 1vh, 1.5rem);
 }
 
 .hero-meta-line {
@@ -105,7 +115,8 @@
 }
 
 .hero-name {
-    margin: calc(var(--hero-gap) * 0.55) 0 0;
+    margin: 0;
+    text-align: left;
     font-family: 'Archivo', var(--font-main);
     font-weight: 800;
     font-size: clamp(2.4rem, 3vw + 5.2vh, 6.5rem);
