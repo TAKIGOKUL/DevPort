@@ -53,7 +53,7 @@ const Hero = () => {
                             <div className="hero-cta-row">
                                 <a href="#projects" className="hbtn hbtn-primary hoverable">See the work</a>
                                 <a href="https://github.com/TAKIGOKUL" target="_blank" rel="noreferrer" className="hbtn hbtn-secondary hoverable">GitHub</a>
-                                <a href="https://drive.google.com/file/d/1HmLMatWxnhFK9GsDP_8EWzeLAM7MtVLR/view?usp=sharing" target="_blank" rel="noreferrer" className="hbtn hbtn-secondary hoverable">Résumé (PDF)</a>
+                                <a href="https://drive.google.com/file/d/1HmLMatWxnhFK9GsDP_8EWzeLAM7MtVLR/view?usp=sharing" target="_blank" rel="noreferrer" className="hbtn hbtn-secondary hbtn-resume hoverable">Résumé (PDF)</a>
                             </div>
 
                             <div className="hero-availability">

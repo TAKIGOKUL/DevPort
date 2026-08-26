@@ -63,8 +63,7 @@
     filter: grayscale(100%);
 }
 
-.project-card:hover .card-image,
-.project-card.in-view .card-image {
+.project-card:hover .card-image {
     transform: scale(1.05);
     filter: grayscale(0%);
 }
@@ -101,7 +100,11 @@
     font-size: 1rem;
     color: var(--text-secondary);
     max-width: 100%;
-    line-height: 1.6;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .project-tags {

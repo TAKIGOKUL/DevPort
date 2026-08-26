@@ -28,7 +28,10 @@ export function useScrollActivate(containerRef, selector, activeClass = 'in-view
             },
             {
                 threshold: 0,
-                rootMargin: '-30% 0px -30% 0px',
+                // Wide band so cards sharing a grid row (equal height, same
+                // vertical extent) reliably enter/exit together instead of
+                // one lagging a frame behind its neighbor at a narrow band's edge.
+                rootMargin: '-18% 0px -18% 0px',
             }
         );
 

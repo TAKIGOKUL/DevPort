@@ -236,6 +236,65 @@
     transform: translateY(-2px);
 }
 
+/* Slow inhale/exhale glow — a quiet cue that draws the eye without
+   competing with the hover lift (box-shadow, not transform, so the
+   two never fight for the same property) — plus a shimmer sweep
+   riding on the same cadence. */
+.hbtn-resume {
+    position: relative;
+    overflow: hidden;
+    animation: hbtnBreathe 3.6s ease-in-out infinite;
+}
+
+.hbtn-resume::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: hbtnShimmer 3.6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hbtn-resume:hover,
+.hbtn-resume:hover::before {
+    animation-play-state: paused;
+}
+
+@keyframes hbtnBreathe {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 16px 3px rgba(255, 255, 255, 0.16);
+    }
+}
+
+@keyframes hbtnShimmer {
+
+    0%,
+    45% {
+        left: -60%;
+    }
+
+    100% {
+        left: 130%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hbtn-resume,
+    .hbtn-resume::before {
+        animation: none;
+    }
+}
+
 .hero-availability {
     display: inline-flex;
     align-items: center;
