@@ -1,16 +1,52 @@
-# React + Vite
+# Gokul G K — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal developer portfolio for Gokul G K, built as a single-page React app: hero, about, projects, experience, certifications, achievements, a YouTube/vlogs section, and contact.
 
-Currently, two official plugins are available:
+**Live structure:** `App.jsx` renders a preloader, then mounts the section components in order — `Navbar → Hero → About → Projects → Experience → Certifications → Achievements → Youtube → Contact`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## React Compiler
+- **React 19** (functional components, hooks)
+- **Vite 7** — dev server and build
+- **GSAP** — preloader timeline animation
+- **Framer Motion** — component-level animation
+- **Lenis** — smooth scrolling
+- **React Icons** / **Remix Icon** classes — iconography
+- **ESLint 9** with `eslint-plugin-react-hooks` and `eslint-plugin-react-refresh`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+No CSS framework — every component ships its own plain CSS file, styled with CSS custom properties defined in `src/index.css`.
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev       # start the dev server
+```
+
+```bash
+npm run build      # production build to dist/
+npm run preview    # preview the production build locally
+npm run lint        # run ESLint
+```
+
+## Project structure
+
+```
+src/
+  components/       # one .jsx + .css pair per section
+  hooks/            # shared hooks (e.g. useScrollActivate for scroll-triggered hover states)
+  data.js           # all portfolio content — personal details, projects, experience,
+                     # certifications, achievements, YouTube channel info
+  App.jsx           # section order + preloader gate
+  index.css         # design tokens (colors, fonts) and global reset
+```
+
+## Editing content
+
+Almost all text content (bio, project list, experience, certifications, achievements, social links, YouTube channel) lives in `src/data.js` — update it there rather than in the components.
+
+## Design notes
+
+- Dark, monochrome-plus-green palette with `Archivo` for display type and `Space Mono` for mono/label text (see `index.css` and `index.html` font links).
+- The hero uses a bordered two-panel "poster" layout that fits within one screen on desktop/tablet and switches to natural scrolling on mobile — see `Hero.css` for the responsive breakpoints.
+- Card hover effects across Projects/Achievements/Certifications also trigger on scroll via `useScrollActivate`, so the same affordance works on touch devices.
