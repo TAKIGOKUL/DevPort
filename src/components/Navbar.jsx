@@ -34,20 +34,26 @@ const Navbar = () => {
     };
 
     const navLinks = [
-        { name: 'Home', href: '#hero' },
         { name: 'About', href: '#about' },
         { name: 'Projects', href: '#projects' },
         { name: 'Experience', href: '#experience' },
         { name: 'Certifications', href: '#certifications' },
         { name: 'Achievements', href: '#achievements' },
+        { name: 'Vlogs', href: '#youtube' },
         { name: 'Contact', href: '#contact' }
     ];
 
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
             <div className="nav-container">
-                <a href="#hero" className="nav-logo" onClick={closeMenu}>
-                    <span className="logo-text">GOKUL</span>
+                <a href="#hero" className="nav-logo hoverable" onClick={closeMenu}>
+                    <span className="logo-text" aria-label="Gokul">
+                        {"GOKUL".split('').map((letter, i) => (
+                            <span key={i} className="logo-letter" style={{ '--i': i }} aria-hidden="true">
+                                {letter}
+                            </span>
+                        ))}
+                    </span>
                     <span className="logo-accent">.</span>
                 </a>
 

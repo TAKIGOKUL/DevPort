@@ -9,6 +9,7 @@
   --accent-blue: #333333;
   /* Monochrome accent */
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', 'Fira Code', 'Courier New', monospace;
   --border-color: rgba(255, 255, 255, 0.1);
 
   --cursor-size: 20px;

@@ -31,7 +31,8 @@
     overflow: hidden;
 }
 
-.achievement-card-nothing:hover {
+.achievement-card-nothing:hover,
+.achievement-card-nothing.in-view {
     border-color: rgba(0, 255, 136, 0.3);
     transform: translateY(-4px);
     background: rgba(30, 30, 30, 0.95);

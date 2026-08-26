@@ -10,11 +10,7 @@
 }
 
 .navbar.scrolled {
-    background: rgba(12, 12, 12, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    background: transparent;
 }
 
 .navbar.menu-open {
@@ -29,6 +25,41 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        backdrop-filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        margin 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        max-width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        padding 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Liquid glass — the bar floats free of the viewport edges once you
+   scroll, a translucent material layer with content passing underneath */
+.navbar.scrolled .nav-container {
+    background: rgba(20, 20, 20, 0.55);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-color: rgba(255, 255, 255, 0.09);
+    border-top-color: rgba(255, 255, 255, 0.22);
+    /* bright top edge = light catching the material */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    margin: 0.7rem auto 0;
+    max-width: calc(1400px - 2.5rem);
+    padding: 0.85rem 1.5rem;
+}
+
+.navbar.menu-open .nav-container {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: transparent;
+    box-shadow: none;
+    margin: 0 auto;
+    max-width: 1400px;
+    padding: 1.25rem 2rem;
 }
 
 /* Logo */
@@ -40,13 +71,106 @@
     display: flex;
     align-items: center;
     gap: 0.1rem;
-    transition: all 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 1002;
     letter-spacing: 0.03em;
+    position: relative;
+    padding: 0.4rem 0.7rem;
+    margin: -0.4rem -0.7rem;
+    border-radius: 999px;
+}
+
+/* Magnetic glass pill that materializes behind the logo on hover —
+   blur + scale animate together so it reads as a real surface arriving */
+.nav-logo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.nav-logo:hover::before {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .logo-text {
     letter-spacing: 0.08em;
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    padding: 0 0.05em;
+}
+
+/* Per-letter materialize-in on mount */
+.logo-letter {
+    display: inline-block;
+    opacity: 0;
+    animation: letterIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--i) * 0.06s + 0.2s);
+    will-change: transform, opacity, filter;
+}
+
+@keyframes letterIn {
+    0% {
+        opacity: 0;
+        transform: translateY(14px) scale(0.85);
+        filter: blur(6px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Liquid glass sheen — a colored glint sweeps across the letters on hover,
+   like light catching glass, independent of the letter-reveal animation */
+.logo-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 35%;
+    height: 100%;
+    background: linear-gradient(115deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.55) 45%,
+            rgba(0, 255, 136, 0.85) 55%,
+            transparent 100%);
+    transform: skewX(-20deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav-logo:hover .logo-text::after {
+    animation: sheenSweep 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes sheenSweep {
+    0% {
+        left: -60%;
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 130%;
+        opacity: 0;
+    }
 }
 
 .logo-accent {
@@ -58,6 +182,17 @@
 
 .nav-logo:hover {
     transform: scale(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .logo-letter,
+    .logo-text::after {
+        animation: none !important;
+        opacity: 1;
+        filter: none;
+        transform: none;
+    }
 }
 
 /* Desktop Navigation Menu */

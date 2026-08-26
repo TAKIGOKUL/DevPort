@@ -33,13 +33,17 @@
     border-right: none;
     padding: 0;
     position: relative;
-    transition: background 0.4s ease;
+    transition: background 0.5s ease, border-color 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     min-height: 400px;
     display: flex;
     flex-direction: column;
 }
 
-.project-card:hover {
+/* .in-view is toggled by scroll position (useScrollActivate) so the same
+   glow/lift a pointer hover gives also happens as a card drifts through
+   the center of the viewport while scrolling */
+.project-card:hover,
+.project-card.in-view {
     background: var(--bg-secondary);
     border-color: rgba(0, 255, 136, 0.2);
 }
@@ -59,7 +63,8 @@
     filter: grayscale(100%);
 }
 
-.project-card:hover .card-image {
+.project-card:hover .card-image,
+.project-card.in-view .card-image {
     transform: scale(1.05);
     filter: grayscale(0%);
 }
@@ -118,6 +123,47 @@
 /* Remove old glow */
 .card-glow {
     display: none;
+}
+
+/* View All CTA — liquid glass pill */
+.projects-view-all {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.btn-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-top-color: rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-view-all svg {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-view-all:hover {
+    background: rgba(0, 255, 136, 0.12);
+    border-color: rgba(0, 255, 136, 0.4);
+    color: #fff;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.12);
+}
+
+.btn-view-all:hover svg {
+    transform: translate(2px, -2px);
 }
 
 /* Responsive Styles */

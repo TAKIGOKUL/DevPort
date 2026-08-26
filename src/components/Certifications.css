@@ -66,7 +66,8 @@
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nothing-cert-card:hover {
+.nothing-cert-card:hover,
+.nothing-cert-card.in-view {
     border-color: rgba(0, 255, 136, 0.25);
     transform: translateY(-6px);
     background: rgba(25, 25, 25, 0.9);
@@ -74,12 +75,19 @@
         0 0 30px rgba(0, 255, 136, 0.05);
 }
 
-.nothing-cert-card:hover::before {
+.nothing-cert-card:hover::before,
+.nothing-cert-card.in-view::before {
     opacity: 1;
 }
 
-.nothing-cert-card:hover::after {
+.nothing-cert-card:hover::after,
+.nothing-cert-card.in-view::after {
     width: 100%;
+}
+
+.nothing-cert-card:hover .cert-issuer,
+.nothing-cert-card.in-view .cert-issuer {
+    color: rgba(0, 255, 136, 1);
 }
 
 /* Card Header with ID */
@@ -127,10 +135,6 @@
     font-weight: 600;
     color: rgba(0, 255, 136, 0.85);
     transition: color 0.3s ease;
-}
-
-.nothing-cert-card:hover .cert-issuer {
-    color: rgba(0, 255, 136, 1);
 }
 
 /* Hide the divider dot since we're stacking vertically */

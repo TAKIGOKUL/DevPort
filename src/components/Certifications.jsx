@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useScrollActivate } from '../hooks/useScrollActivate';
 import './Certifications.css';
 
 const Certifications = () => {
+    const sectionRef = useRef(null);
+    useScrollActivate(sectionRef, '.nothing-cert-card');
+
     const certifications = [
         {
             id: 1,
@@ -27,13 +31,13 @@ const Certifications = () => {
     ];
 
     return (
-        <section id="certifications" className="certifications-section">
+        <section id="certifications" className="certifications-section" ref={sectionRef}>
             <div className="certifications-container">
                 <h2 className="section-title">CERTIFICATIONS</h2>
 
                 <div className="certs-grid">
                     {certifications.map((cert) => (
-                        <div key={cert.id} className="nothing-cert-card">
+                        <div key={cert.id} className="nothing-cert-card hoverable">
                             <div className="cert-header">
                                 <span className="cert-id">{cert.credentialId}</span>
                             </div>

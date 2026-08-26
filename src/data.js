@@ -76,6 +76,30 @@ export const skills = {
     "Tools & DevOps": ["Git", "Docker", "Figma", "Vercel", "Firebase Hosting", "CI/CD", "Linux"]
 };
 
+export const youtube = {
+    channelName: "Mr. Robuddy",
+    handle: "@mr.robuddy",
+    channelUrl: "https://www.youtube.com/@mr.robuddy",
+    tagline: "Tech vlogs, build logs, and AI experiments — on camera.",
+    videos: [
+        {
+            title: "Building AI Agents in Public",
+            desc: "A behind-the-scenes look at shipping an agentic AI workflow end to end.",
+            duration: "12:04"
+        },
+        {
+            title: "n8n + Gemini: Automation Breakdown",
+            desc: "Wiring an LLM into a real automation pipeline, step by step.",
+            duration: "08:47"
+        },
+        {
+            title: "Full-Stack Build, Start to Deploy",
+            desc: "From empty repo to a live app — the decisions, the bugs, the deploy.",
+            duration: "15:32"
+        }
+    ]
+};
+
 export const achievements = [
     {
         title: "Machine Learning with Python",

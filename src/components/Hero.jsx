@@ -2,100 +2,95 @@ import React, { useEffect, useState } from 'react';
 import { personalDetails } from '../data';
 import './Hero.css';
 
+const ROLES = ['AI Engineer', 'Full-Stack SDE', 'UI/UX Developer', 'Agentic AI Builder'];
+
 const Hero = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isVisible, setIsVisible] = useState(false);
+    const [roleIndex, setRoleIndex] = useState(0);
 
     useEffect(() => {
         setIsVisible(true);
 
-        const handleMouseMove = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
+        const timer = setInterval(() => {
+            setRoleIndex((i) => (i + 1) % ROLES.length);
+        }, 2400);
 
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
+        return () => clearInterval(timer);
     }, []);
 
     return (
         <section id="hero" className="hero-section">
-            {/* Animated background glow */}
-            <div
-                className="hero-glow"
-                style={{
-                    left: `${mousePosition.x}px`,
-                    top: `${mousePosition.y}px`,
-                }}
-            ></div>
+            <div className="hero-grid-lines" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
 
-            {/* Decorative elements */}
-            <div className="hero-decoration decoration-1"></div>
-            <div className="hero-decoration decoration-2"></div>
+            <div className={`hero-inner ${isVisible ? 'visible' : ''}`}>
+                <div className="hero-panels">
+                    <div className="hero-panel hero-panel-text">
+                        <div className="hero-meta-row">
+                            <span>{personalDetails.location.replace(', India', '')} — IN</span>
+                            <span className="hero-meta-line"></span>
+                            <span>B.Tech CSE &apos;26</span>
+                        </div>
 
-            <div className="hero-container">
-                {/* Main content - Left side */}
-                <div className={`hero-content ${isVisible ? 'visible' : ''}`}>
-                    <div className="hero-greeting">
-                        <span className="greeting-text">Hi There,</span>
+                        <h1 className="hero-name">
+                            <span>Gokul</span>
+                            <span>G K<em>.</em></span>
+                        </h1>
+
+                        <div className="hero-role-row">
+                            <span className="hero-role-text">{ROLES[roleIndex]}</span>
+                            <span className="hero-role-cursor" aria-hidden="true"></span>
+                        </div>
+
+                        <p className="hero-desc">
+                            Final-year CS engineer building agentic AI systems, full-stack web apps
+                            and cross-platform mobile products. I ship: eight production apps, four
+                            AI systems, two hackathon wins.
+                        </p>
+
+                        <div className="hero-cta-row">
+                            <a href="#projects" className="hbtn hbtn-primary hoverable">See the work</a>
+                            <a href="https://github.com/TAKIGOKUL" target="_blank" rel="noreferrer" className="hbtn hbtn-secondary hoverable">GitHub</a>
+                            <a href="https://drive.google.com/file/d/1HmLMatWxnhFK9GsDP_8EWzeLAM7MtVLR/view?usp=sharing" target="_blank" rel="noreferrer" className="hbtn hbtn-secondary hoverable">Résumé (PDF)</a>
+                        </div>
+
+                        <div className="hero-availability">
+                            <span className="hero-availability-dot" aria-hidden="true"></span>
+                            Open to full-time roles — graduating May 2026
+                        </div>
                     </div>
 
-                    <h1 className="hero-title">
-                        I am <span className="hero-name">{personalDetails.name.split(' ')[0]}</span>
-                    </h1>
-
-                    <h2 className="hero-role">
-                        {personalDetails.role}
-                    </h2>
-
-                    <p className="hero-description">
-                        {personalDetails.tagline || "Passionate about building innovative solutions with cutting-edge technologies. Transforming ideas into reality through code and creativity."}
-                    </p>
-
-                    <div className="hero-cta">
-                        <a href="https://drive.google.com/file/d/1HmLMatWxnhFK9GsDP_8EWzeLAM7MtVLR/view?usp=sharing" target="_blank" rel="noreferrer" className="btn-primary">
-                            <span>Resume</span>
-                            <svg className="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 3V16M12 16L7 11M12 16L17 11M3 21H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </a>
-                        <a href="#contact" className="btn-secondary">
-                            <span>Get In Touch</span>
-                        </a>
-                    </div>
-
-                    {/* Stats */}
-                    <div className="hero-stats">
-                        <div className="stat-item">
-                            <div className="stat-number">2+</div>
-                            <div className="stat-label">Years Experience</div>
-                        </div>
-                        <div className="stat-divider"></div>
-                        <div className="stat-item">
-                            <div className="stat-number">50+</div>
-                            <div className="stat-label">Projects Done</div>
-                        </div>
-                        <div className="stat-divider"></div>
-                        <div className="stat-item">
-                            <div className="stat-number">100%</div>
-                            <div className="stat-label">Client Satisfaction</div>
-                        </div>
+                    <div className="hero-panel hero-panel-photo">
+                        <img
+                            src={personalDetails.profileImg}
+                            alt={personalDetails.name}
+                            className="hero-photo"
+                        />
                     </div>
                 </div>
 
-                {/* Right side - Profile Image */}
-                <div className={`hero-image-wrapper ${isVisible ? 'visible' : ''}`}>
-                    <div className="image-background">
-                        <div className="image-glow"></div>
+                <div className="hero-stats-strip">
+                    <div className="hero-stat">
+                        <span className="hero-stat-num">8+</span>
+                        <span className="hero-stat-label">Production apps shipped</span>
                     </div>
-                    <img
-                        src={personalDetails.profileImg}
-                        alt={personalDetails.name}
-                        className="hero-profile-image"
-                    />
+                    <div className="hero-stat">
+                        <span className="hero-stat-num">10+</span>
+                        <span className="hero-stat-label">Hackathons — 2 wins</span>
+                    </div>
+                    <div className="hero-stat">
+                        <span className="hero-stat-num">150+</span>
+                        <span className="hero-stat-label">Engineers led, IEEE PES</span>
+                    </div>
+                    <div className="hero-stat">
+                        <span className="hero-stat-num">100+</span>
+                        <span className="hero-stat-label">Students taught GenAI</span>
+                    </div>
                 </div>
             </div>
 
-            {/* Social Links - Vertical side bar */}
+            {/* Social Links - Vertical side bar (floating buttons — unchanged) */}
             <div className="hero-socials-vertical">
                 <a
                     href="https://api.whatsapp.com/send?phone=918129725007&text="

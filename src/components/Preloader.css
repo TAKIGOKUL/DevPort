@@ -11,13 +11,79 @@
     justify-content: center;
     align-items: center;
     color: var(--text-main);
+    overflow: hidden;
+}
+
+/* Dot-matrix texture — IBM-mainframe-terminal undertone, matches the
+   binary cursor trail used elsewhere on the site */
+.preloader-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 75%);
+    mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 75%);
+    pointer-events: none;
 }
 
 .loader-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Segmented dot-matrix progress bar — mechanical, snaps segment by
+   segment rather than a smooth continuous fill */
+.segment-bar {
+    display: flex;
+    gap: 4px;
+}
+
+.segment {
+    width: 10px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 1px;
+    transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
+}
+
+.segment.filled {
+    background: rgba(0, 255, 136, 0.9);
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+}
+
+@media (max-width: 768px) {
+    .segment {
+        width: 7px;
+    }
+}
+
+/* Bracketed status readout — mono, all-caps, zero tracking */
+.loader-status {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: rgba(0, 255, 136, 0.85);
+}
+
+.loader-status.snap {
+    animation: statusSnap 0.18s ease-out;
+}
+
+@keyframes statusSnap {
+    0% {
+        opacity: 0.2;
+        transform: translateY(-2px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .name-wrapper {
@@ -52,10 +118,12 @@
 }
 
 .loader-counter {
-    font-size: 8rem;
-    font-weight: 200;
+    font-family: var(--font-mono);
+    font-size: 6rem;
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
     opacity: 0.5;
+    letter-spacing: -0.02em;
 }
 
 @media (max-width: 768px) {

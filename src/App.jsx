@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Certifications from './components/Certifications';
 import Achievements from './components/Achievements';
+import Youtube from './components/Youtube';
 import Contact from './components/Contact';
 import Cursor from './components/Cursor';
 import Preloader from './components/Preloader';
@@ -58,6 +59,7 @@ function App() {
           <Experience />
           <Certifications />
           <Achievements />
+          <Youtube />
           <Contact />
         </>
       )}

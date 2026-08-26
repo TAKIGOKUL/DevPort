@@ -1,0 +1,297 @@
+/* YouTube / Tech Vlogs Section */
+.youtube-section {
+    padding: 6rem 2rem;
+    background: transparent;
+}
+
+.youtube-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.youtube-section .section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--text-main);
+    letter-spacing: 0.1em;
+    margin-bottom: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+/* Channel banner — liquid glass surface, the single expressive break
+   (the one splash of YouTube red) on an otherwise monochrome page */
+.yt-channel-banner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.75rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-top-color: rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    text-decoration: none;
+    transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.yt-channel-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 0% 0%, rgba(255, 0, 51, 0.08) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.yt-channel-banner:hover {
+    border-color: rgba(255, 0, 51, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px -20px rgba(0, 0, 0, 0.6);
+}
+
+.yt-channel-banner:hover::before {
+    opacity: 1;
+}
+
+.yt-channel-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 0, 51, 0.1);
+    border: 1px solid rgba(255, 0, 51, 0.25);
+    font-size: 2rem;
+    color: #ff3355;
+    transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.yt-channel-banner:hover .yt-channel-icon {
+    transform: scale(1.08) rotate(-4deg);
+}
+
+.yt-channel-info {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.yt-channel-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.yt-channel-handle {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(0, 255, 136, 0.85);
+    letter-spacing: 0;
+}
+
+.yt-channel-tagline {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 0.4rem;
+    text-align: left;
+    max-width: 460px;
+}
+
+.yt-subscribe-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.4rem;
+    background: #ff3355;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 999px;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.yt-channel-banner:hover .yt-subscribe-btn {
+    background: #ff5577;
+    box-shadow: 0 8px 24px rgba(255, 51, 85, 0.35);
+    transform: translateX(3px);
+}
+
+/* Video grid */
+.yt-video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.yt-video-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: rgba(20, 20, 20, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.yt-video-card:hover,
+.yt-video-card.in-view {
+    border-color: rgba(0, 255, 136, 0.25);
+    transform: translateY(-6px);
+    background: rgba(28, 28, 28, 0.85);
+    box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.55);
+}
+
+.yt-thumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1c1c1c 0%, #0c0c0c 100%);
+    overflow: hidden;
+}
+
+.yt-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.12) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.yt-video-card:hover .yt-thumb::after,
+.yt-video-card.in-view .yt-thumb::after {
+    opacity: 1;
+}
+
+.yt-play-icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.6rem;
+    backdrop-filter: blur(6px);
+    transition: all 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+    z-index: 1;
+}
+
+.yt-video-card:hover .yt-play-icon,
+.yt-video-card.in-view .yt-play-icon {
+    background: #ff3355;
+    border-color: #ff3355;
+    color: #fff;
+    transform: scale(1.12);
+    box-shadow: 0 8px 24px rgba(255, 51, 85, 0.4);
+}
+
+.yt-duration {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    letter-spacing: 0;
+    z-index: 1;
+}
+
+.yt-video-body {
+    padding: 1.25rem 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.yt-video-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
+}
+
+.yt-video-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .youtube-section {
+        padding: 4.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .youtube-section {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .youtube-section .section-title {
+        margin-bottom: 2.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .yt-channel-banner {
+        flex-wrap: wrap;
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    .yt-channel-tagline {
+        max-width: 100%;
+    }
+
+    .yt-subscribe-btn {
+        margin-left: auto;
+    }
+
+    .yt-video-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .youtube-section {
+        padding: 3rem 1rem;
+    }
+
+    .yt-channel-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 1.6rem;
+    }
+
+    .yt-channel-name {
+        font-size: 1.1rem;
+    }
+
+    .yt-subscribe-btn {
+        padding: 0.65rem 1.1rem;
+        font-size: 0.8rem;
+    }
+}

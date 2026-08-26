@@ -2,10 +2,24 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import './Preloader.css';
 
+const SEGMENT_COUNT = 20;
+
+const STATUS_STEPS = [
+    { at: 0, label: 'INITIALIZING' },
+    { at: 20, label: 'LOADING ASSETS' },
+    { at: 50, label: 'COMPILING PROFILE' },
+    { at: 80, label: 'FINALIZING' },
+    { at: 100, label: 'SYSTEM READY' },
+];
+
 const Preloader = ({ onComplete }) => {
     const containerRef = useRef(null);
     const textRef = useRef(null);
     const counterRef = useRef(null);
+    const statusRef = useRef(null);
+    const segmentRefs = useRef([]);
+    const lastLabel = useRef('');
+    const lastFilled = useRef(0);
 
     const languages = [
         "ഗോകുൽ",  // Malayalam
@@ -22,25 +36,42 @@ const Preloader = ({ onComplete }) => {
             }
         });
 
-        // Counter Animation
+        // Counter + status + segmented bar, all driven from one source of truth
         let count = { val: 0 };
         tl.to(count, {
             val: 100,
             duration: 2.0,
             ease: "power2.inOut",
             onUpdate: () => {
+                const val = count.val;
                 if (counterRef.current) {
-                    counterRef.current.innerText = count.val.toFixed(0) + "%";
+                    counterRef.current.innerText = val.toFixed(0).padStart(3, '0') + "%";
+                }
+
+                // Mechanical, percussive status snap — instant, not eased
+                const step = [...STATUS_STEPS].reverse().find((s) => val >= s.at);
+                if (step && step.label !== lastLabel.current && statusRef.current) {
+                    lastLabel.current = step.label;
+                    statusRef.current.innerText = `[${step.label}]`;
+                    statusRef.current.classList.remove('snap');
+                    void statusRef.current.offsetWidth; // restart animation
+                    statusRef.current.classList.add('snap');
+                }
+
+                // Segmented dot-matrix progress bar
+                const filled = Math.round((val / 100) * SEGMENT_COUNT);
+                if (filled !== lastFilled.current) {
+                    lastFilled.current = filled;
+                    segmentRefs.current.forEach((seg, i) => {
+                        if (!seg) return;
+                        seg.classList.toggle('filled', i < filled);
+                    });
                 }
             }
         });
 
         // Language Switching Animation
-        // We want this to happen WHILE the counter is going, or sync with it.
-        // Let's space them out over the 2 seconds of the counter, then land on English.
-
         languages.forEach((lang, index) => {
-            // Switch text
             tl.to(textRef.current, {
                 duration: 0.25,
                 opacity: 1,
@@ -58,10 +89,15 @@ const Preloader = ({ onComplete }) => {
             ease: "power4.out",
         });
 
-        // Remove counter
-        tl.to(counterRef.current, {
+        // Remove counter + status + segments
+        tl.to([counterRef.current, statusRef.current], {
             opacity: 0,
             duration: 0.5
+        }, "<");
+
+        tl.to('.segment-bar', {
+            opacity: 0,
+            duration: 0.4
         }, "<");
 
         // Hold for 1 second as requested
@@ -78,13 +114,28 @@ const Preloader = ({ onComplete }) => {
 
     return (
         <div className="preloader" ref={containerRef}>
+            <div className="preloader-grid" aria-hidden="true"></div>
+
             <div className="loader-content">
                 <h1 ref={textRef} className="loader-text-lang">
                     {languages[0]}
                 </h1>
+
+                <div className="segment-bar" aria-hidden="true">
+                    {Array.from({ length: SEGMENT_COUNT }).map((_, i) => (
+                        <span
+                            key={i}
+                            className="segment"
+                            ref={(el) => (segmentRefs.current[i] = el)}
+                        />
+                    ))}
+                </div>
+
+                <span ref={statusRef} className="loader-status">[INITIALIZING]</span>
             </div>
+
             <div className="counter-wrapper">
-                <span ref={counterRef} className="loader-counter">0%</span>
+                <span ref={counterRef} className="loader-counter">000%</span>
             </div>
         </div>
     );

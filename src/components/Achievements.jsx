@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { achievements } from '../data';
+import { useScrollActivate } from '../hooks/useScrollActivate';
 import './Achievements.css';
 
 const Achievements = () => {
+    const sectionRef = useRef(null);
+    useScrollActivate(sectionRef, '.achievement-card-nothing');
+
     return (
-        <section id="achievements" className="achievements-section-standalone">
+        <section id="achievements" className="achievements-section-standalone" ref={sectionRef}>
             <div className="achievements-container">
                 <h2 className="section-title">ACHIEVEMENTS</h2>
                 <div className="achievements-grid">
@@ -14,7 +18,7 @@ const Achievements = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             key={index}
-                            className="achievement-card-nothing"
+                            className="achievement-card-nothing hoverable"
                         >
                             <div className="ach-number">#{String(index + 1).padStart(2, '0')}</div>
                             <h4 className="ach-title">{ach.title}</h4>
